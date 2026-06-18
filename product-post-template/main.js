@@ -1,4 +1,4 @@
-/*<![CDATA[*/
+
 let currentIndex=0;const mainImage=document.getElementById('mainProductImage');const thumbnailContainer=document.getElementById('thumbnailContainer');const marketplaceGrid=document.getElementById('marketplaceGrid');const modal=document.getElementById('imageModal');const modalImage=document.getElementById('modalImage');function updateMainImage(index){if(index>=0&&index<productImages.length){currentIndex=index;mainImage.src=productImages[currentIndex];document.querySelectorAll('.pv-thumbnail').forEach((thumb,i)=>{if(i===currentIndex){thumb.classList.add('active')}else{thumb.classList.remove('active')}})}}
 function initThumbnails(){productImages.forEach((imgUrl,index)=>{const thumb=document.createElement('div');thumb.className='pv-thumbnail'+(index===0?' active':'');thumb.innerHTML=`<img src="${imgUrl}" alt="Thumbnail ${index + 1}" loading="lazy">`;thumb.addEventListener('click',()=>updateMainImage(index));thumbnailContainer.appendChild(thumb)})}
 function openModal(index){currentIndex=index;modalImage.src=productImages[currentIndex];modal.classList.add('active');document.body.style.overflow='hidden'}
@@ -10,4 +10,4 @@ function initMarketplaceButtons(){}
 function startAutoSlideshow(){setInterval(()=>{let nextIndex=(currentIndex+1)%productImages.length;updateMainImage(nextIndex);const activeThumb=thumbnailContainer.children[nextIndex];if(activeThumb){thumbnailContainer.scrollTo({left:activeThumb.offsetLeft-thumbnailContainer.offsetLeft,behavior:'smooth'})}},4000)}
 function init(){initThumbnails();initMarketplaceButtons();initEventListeners();startAutoSlideshow()}
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}
-/*]]>*/
+
